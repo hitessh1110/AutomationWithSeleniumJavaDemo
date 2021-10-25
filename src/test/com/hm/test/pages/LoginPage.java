@@ -1,5 +1,6 @@
 package com.hm.test.pages;
 
+import com.hm.framework.base.Base;
 import com.hm.framework.base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,27 +10,29 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage() {
+
     }
 
-    @FindBy(how = How.NAME , using = "UserName")
+    @FindBy(how = How.CSS , using = "input[name='txtUsername']")
     public WebElement txtUserName;
 
-    @FindBy(how = How.NAME , using = "Password")
+    @FindBy(how = How.CSS , using = "input[name='txtPassword']")
     public WebElement txtPassword;
 
-    @FindBy(how = How.NAME , using = "Login")
+    @FindBy(how = How.CSS , using = "input[type='submit']")
     public WebElement btnLogin;
 
 
 
 
-    public void Login(String userName, String password){
+    public BasePage Login(String userName, String password){
 
         txtUserName.sendKeys(userName);
         txtPassword.sendKeys(password);
         btnLogin.submit();
+
+        return GetInstance(HomePage.class);
     }
 
 
