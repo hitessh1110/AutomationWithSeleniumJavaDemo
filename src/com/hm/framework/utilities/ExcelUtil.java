@@ -1,7 +1,8 @@
 package com.hm.framework.utilities;
 
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -10,6 +11,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ExcelUtil {
 
@@ -23,12 +27,27 @@ public class ExcelUtil {
     static XSSFWorkbook workbook =null;
     static Hashtable dict = new Hashtable();
 
+
     // Create Constructor
-    public ExcelUtil(String ExcelSheetPath) throws IOException {
+    public ExcelUtil(String ExcelSheetPath ) throws IOException {
 
         workbook = new XSSFWorkbook(( new FileInputStream(new File(ExcelSheetPath))));
         wrkSheet = workbook.getSheet("Sheet1");
         ColumnDictionary();
+    }
+
+    //Returns the Number of Sheet present in Workbook
+    public static List<String> getSheetNames(String ExcelSheetPath) throws Exception {
+
+        File file =  new File(ExcelSheetPath);
+
+        try (Workbook book = WorkbookFactory.create(file)) {
+
+            return IntStream.range(0, book.getNumberOfSheets())
+                    .mapToObj(book::getSheetAt)
+                    .map(Sheet::getSheetName)
+                    .collect(Collectors.toList());
+        }
     }
 
     //Returns the Number of Rows
@@ -72,6 +91,9 @@ public class ExcelUtil {
 
         }
     }
+
+
+
 
 
 }
