@@ -18,8 +18,10 @@ public class ConfigReader {
     private void ReadProperty() throws IOException {
         //Create Property Object
         Properties p = new Properties();
+        FileInputStream fis = new FileInputStream("src//com//hm//framework//config//GlobalConfig.properties");
         //Load the Property file available in same package
-        p.load(getClass().getClassLoader().getResourceAsStream("GlobalConfig_new.properties"));
+      //  p.load(getClass().getClassLoader().getResourceAsStream("GlobalConfig_new.properties"));
+        p.load(fis);
         //Get AUTConnection String
         Settings.AUT_DB_ConnectionString = p.getProperty("AUT_DB_ConnectionString");
         //Get Reporting String

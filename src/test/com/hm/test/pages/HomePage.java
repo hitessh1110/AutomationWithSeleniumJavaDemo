@@ -1,10 +1,7 @@
 package com.hm.test.pages;
 
 import com.hm.framework.base.BasePage;
-import com.paulhammant.ngwebdriver.ByAngularBinding;
-import com.paulhammant.ngwebdriver.ByAngularButtonText;
-import com.paulhammant.ngwebdriver.ByAngularModel;
-import com.paulhammant.ngwebdriver.ByAngularPartialButtonText;
+import com.paulhammant.ngwebdriver.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -54,7 +51,14 @@ public class HomePage extends BasePage {
     private WebElement deleteButton;
 
 
+    @ByAngularRepeater.FindBy(repeater = "cust in Customers | orderBy:sortType:sortReverse | filter:searchCustomer", exact = true)
+    private WebElement searchCustomer;
 
+
+    @ByAngularRepeaterCell.FindBy(repeater = "cust in Customers",exact = false,row = 1,column = "First Name")
+    private WebElement searchCustomernew;
+
+//    @ByAngularBinding.FindBy(binding = "")
 
     // @ByAngularBinding.FindBy()
 
@@ -120,9 +124,28 @@ public class HomePage extends BasePage {
         return GetInstance(HomePage.class);
     }
     public boolean IsSearchCustomer(){
+
         return customersButton.isEnabled();
+    }
+
+    public boolean IsCustomerPresent(){
+        boolean flag = true;
+       // String txt1 = searchCustomernew.getText();
+        String txt =  searchCustomer.getText();
+        System.out.println("the data txt is " +txt);
+      //  System.out.println("the data txt1 is " +txt1);
+        return flag;
     }
 
 
 
-}
+
+//    String txt = driver.findElement(ByAngular.repeater("company in companies").row(4).column("name")).getText();
+//  System.out.println(txt + " Added.");
+//
+//  if(txt.equalsIgnoreCase("Test Company")){
+//        System.out.println("New Company Added. Now remove it");
+//        driver.findElement(ByAngular.repeater("company in companies").row(4)).findElement(ByAngular.buttonText("Remove")).click();
+    }
+
+

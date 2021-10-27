@@ -1,7 +1,11 @@
 package com.hm.framework.base;
 
+import com.paulhammant.ngwebdriver.NgWebDriver;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
 
 public class Browser {
 
@@ -39,6 +43,15 @@ public class Browser {
         Alert alert = _driver.switchTo().alert();
        return alert.getText();
     }
+
+    public  void waitUntil(){
+
+     //   _driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeUnit));
+        JavascriptExecutor jsDriver = (JavascriptExecutor)_driver;
+        NgWebDriver ngDriver = new NgWebDriver(jsDriver);
+        ngDriver.waitForAngularRequestsToFinish();
+    }
+
 
 
 }

@@ -21,7 +21,7 @@ Feature: Customer Creation Feature
       Then Customer details should be visible Successfully
       Examples:
           | first_name |
-          | ABC       |
+          | Ron       |
           |  Harry    |
 
 
