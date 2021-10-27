@@ -1,6 +1,7 @@
 package com.hm.framework.base;
 
 import com.paulhammant.ngwebdriver.NgWebDriver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class DriverContext {
@@ -18,4 +19,9 @@ public class DriverContext {
 
         ngWebDriver = ngDriver;
     }
+
+//    public static NgWebDriver ngWebDriver(){
+//        JavascriptExecutor js = (JavascriptExecutor) Driver;
+//        return new NgWebDriver(js);
+//    }
 }

@@ -50,13 +50,9 @@ public class HomePage extends BasePage {
     @ByAngularButtonText.FindBy(buttonText = "Delete")
     private WebElement deleteButton;
 
+    @FindBy(how = How.XPATH , using = "//tr[@ng-repeat='cust in Customers | orderBy:sortType:sortReverse | filter:searchCustomer']//td[1]")
+    public WebElement customerName;
 
-    @ByAngularRepeater.FindBy(repeater = "cust in Customers | orderBy:sortType:sortReverse | filter:searchCustomer", exact = true)
-    private WebElement searchCustomer;
-
-
-    @ByAngularRepeaterCell.FindBy(repeater = "cust in Customers",exact = false,row = 1,column = "First Name")
-    private WebElement searchCustomernew;
 
 //    @ByAngularBinding.FindBy(binding = "")
 
@@ -128,13 +124,17 @@ public class HomePage extends BasePage {
         return customersButton.isEnabled();
     }
 
-    public boolean IsCustomerPresent(){
+    public boolean IsCustomerPresent(String custName){
         boolean flag = true;
-       // String txt1 = searchCustomernew.getText();
-        String txt =  searchCustomer.getText();
-        System.out.println("the data txt is " +txt);
-      //  System.out.println("the data txt1 is " +txt1);
-        return flag;
+        String name =  customerName.getText();
+        System.out.println("the data txt is " +name);
+        if (customerName.isDisplayed())
+            return true;
+            if (name.equals(custName))
+            return true;
+
+
+      return false;
     }
 
 

@@ -18,7 +18,7 @@ Feature: Customer Creation Feature
       And  I click on Customers Button
       Then I should see the search customer text box
       When I enter first_name in search field as "<first_name>"
-      Then Customer details should be visible Successfully
+      Then Customer details should be visible Successfully as "<first_name>"
       Examples:
           | first_name |
           | Ron       |

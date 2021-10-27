@@ -34,8 +34,8 @@ public class CustomerSteps extends Base {
 
 
         CurrentPage.As(HomePage.class).clickBankManagerLoginButton();
-      //  DriverContext.Browser.waitUntil();
         Thread.sleep(2000);
+       // DriverContext.Browser.ngWebDriver().wait(2000);
         logger.info("The Bank Manager Login Button is clicked Successfully");
     }
 
@@ -44,7 +44,7 @@ public class CustomerSteps extends Base {
     public void i_click_on_add_customer_button() throws Throwable  {
         CurrentPage.As(HomePage.class).clickAddCustomerButton();
         logger.info("The Add Customer Button has been Clicked Successfully");
-        //  DriverContext.Browser.waitUntil();
+       // DriverContext.Browser.ngWebDriver().wait(2000);
         Thread.sleep(2000);
     }
 
@@ -55,14 +55,14 @@ public class CustomerSteps extends Base {
         CucumberUtil.createDataTableToDict(table);
         CurrentPage.As(HomePage.class).enterFistNameAndLastName(CucumberUtil.getCellValue("First_Name"),CucumberUtil.getCellValue("Last_Name"),CucumberUtil.getCellValue("Post_Code"));
         logger.info("The first name and last name has been enter successfully");
-        //  DriverContext.Browser.waitUntil();
+        // DriverContext.Browser.ngWebDriver().wait(2000);
         Thread.sleep(2000);
     }
 
     @And("I click on Add Customer Button Below")
     public void i_click_on_add_customer_button_below() throws Throwable {
         CurrentPage.As(HomePage.class).clickAddCustButtonBelow();
-        //  DriverContext.Browser.waitUntil();
+        // DriverContext.Browser.ngWebDriver().wait(2000);
         Thread.sleep(2000);
         logger.info("The Add Customer button has been clicked Successfully.");
 
@@ -75,7 +75,7 @@ public class CustomerSteps extends Base {
         String [] Alrt = DriverContext.Browser.getAlertText().split(":");
         logger.info("The Alert Message is : " +Alrt[0]);
         DriverContext.Browser.acceptAlert();
-        //  DriverContext.Browser.waitUntil();
+        // DriverContext.Browser.ngWebDriver().wait(2000);
         Thread.sleep(2000);
         logger.info("The Customer has been Added Successfully.");
         Assert.assertEquals("Customer added successfully with customer id",Alrt[0].trim());
@@ -86,7 +86,7 @@ public class CustomerSteps extends Base {
     public void the_bank_manager_is_logged_successfully() throws Exception {
 
         CurrentPage.As(HomePage.class).clickBankManagerLoginButton();
-        //  DriverContext.Browser.waitUntil();
+        // DriverContext.Browser.ngWebDriver().wait(2000);
         Thread.sleep(2000);
         logger.info("The Bank Manager Login Button is clicked Successfully");
 
@@ -97,7 +97,7 @@ public class CustomerSteps extends Base {
 
          boolean flag =  CurrentPage.As(HomePage.class).IsCustomersButton();
         CurrentPage.As(HomePage.class).clickCustomersButton();
-        //  DriverContext.Browser.waitUntil();
+        // DriverContext.Browser.ngWebDriver().wait(2000);
         Thread.sleep(2000);
          Assert.assertTrue("The Customers button clicked Successfully" ,flag );
         if (flag) {
@@ -112,7 +112,7 @@ public class CustomerSteps extends Base {
     @Then("I should see the search customer text box")
     public void i_should_see_the_search_customer_text_box() throws Exception {
         boolean flag =  CurrentPage.As(HomePage.class).IsSearchCustomer();
-        //  DriverContext.Browser.waitUntil();
+        // DriverContext.Browser.ngWebDriver().wait(2000);
         Thread.sleep(2000);
         Assert.assertTrue("The Customer Search Box present" ,flag );
 
@@ -128,16 +128,16 @@ public class CustomerSteps extends Base {
     public void i_enter_first_name_in_search_field_as(String string) throws Exception {
 
         CurrentPage.As(HomePage.class).searchCustomer(string);
-        //  DriverContext.Browser.waitUntil();
+        // DriverContext.Browser.ngWebDriver().wait(2000);
         Thread.sleep(2000);
         logger.info("The Customers First Name Entered Successfully");
     }
 
-    @Then("Customer details should be visible Successfully")
-    public void customer_details_should_be_visible_successfully() throws Exception {
+    @Then("Customer details should be visible Successfully as {string}")
+    public void customer_details_should_be_visible_successfully_as(String string) throws Exception {
 
-        boolean flag =  CurrentPage.As(HomePage.class).IsCustomersButton();
-        //  DriverContext.Browser.waitUntil();
+        boolean flag =  CurrentPage.As(HomePage.class).IsCustomerPresent(string);
+        // DriverContext.Browser.ngWebDriver().wait(2000);
         Thread.sleep(2000);
         Assert.assertTrue("The Customer Search Box present" ,flag );
 

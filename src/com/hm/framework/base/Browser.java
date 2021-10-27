@@ -14,6 +14,7 @@ public class Browser {
     public BrowserType Type;
 
     public Browser(WebDriver driver) {
+
         _driver = driver;
     }
 
@@ -44,12 +45,9 @@ public class Browser {
        return alert.getText();
     }
 
-    public  void waitUntil(){
-
-     //   _driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeUnit));
-        JavascriptExecutor jsDriver = (JavascriptExecutor)_driver;
-        NgWebDriver ngDriver = new NgWebDriver(jsDriver);
-        ngDriver.waitForAngularRequestsToFinish();
+    public  NgWebDriver ngWebDriver(){
+        JavascriptExecutor js = (JavascriptExecutor) _driver;
+        return new NgWebDriver(js);
     }
 
 
